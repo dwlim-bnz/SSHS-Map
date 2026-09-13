@@ -806,18 +806,15 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 <section class="screen full" id="sc-onboard">
   <div class="top"><div class="brand">가입</div><div class="pill" onclick="signOut()">취소</div></div>
   <div class="h1" style="padding-top:10px">반갑습니다, 동문님</div>
-  <div class="sub">이름과 회차만 입력하면 가입이 완료됩니다.<br>직장·사업장 등 나머지 정보는 나중에 원하실 때 채우시면 됩니다.</div>
+  <div class="sub">이름과 졸업연도만 입력하면 가입이 완료됩니다.<br>직장·사업장 등 나머지 정보는 나중에 원하실 때 채우시면 됩니다.</div>
 
   <div class="field"><label>이름 *</label><input id="obName" placeholder="홍길동"></div>
-  <div class="pair">
-    <div class="field"><label>회차 *</label><input id="obClass" type="number" placeholder="예: 92"></div>
-    <div class="field"><label>졸업연도 (선택)</label><input id="obYear" type="number" placeholder="예: 1992"></div>
-  </div>
+  <div class="field"><label>졸업연도 *</label><input id="obYear" type="number" placeholder="예: 1992" inputmode="numeric"></div>
 
   <div style="margin:16px 20px 0;background:#F7F6F1;border:1px solid var(--line);border-radius:14px;padding:14px">
     <div style="font-size:13px;font-weight:600;margin-bottom:10px">개인정보 수집·이용 동의</div>
     <div style="font-size:12px;color:var(--mute);line-height:1.7;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:12px">
-      <b>필수 수집:</b> 이름, 졸업 회차<br>
+      <b>필수 수집:</b> 이름, 졸업연도<br>
       <b>목적:</b> 숭실고 총동문회 동문 확인 및 동문 네트워크 서비스 제공<br>
       <b>보유:</b> 회원 탈퇴 시 즉시 전량 삭제<br>
       <b>제3자 제공:</b> 없음. 동문 명단·연락처는 제휴점 등 외부에 일절 제공하지 않습니다<br>
@@ -834,7 +831,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   </div>
 
   <div class="note" style="margin-top:12px;background:#E3EFE8;border-color:var(--green);color:var(--green)">
-    가입 직후에는 <b>이름과 회차만</b> 다른 동문에게 보입니다. 직장·거주지 등은 등록하지 않으면 표시되지 않으며, 다른 동문이 먼저 연락할 수도 없습니다.
+    가입 직후에는 <b>이름과 졸업연도만</b> 다른 동문에게 보입니다. 직장·거주지 등은 등록하지 않으면 표시되지 않으며, 다른 동문이 먼저 연락할 수도 없습니다.
   </div>
 
   <button class="btn" onclick="saveOnboard()">동의하고 가입 완료</button>
@@ -864,7 +861,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 <!-- SEARCH -->
 <section class="screen" id="sc-search">
   <div class="top"><div class="brand">검색</div></div>
-  <div class="search">🔍 <input id="q" placeholder="이름, 회차, 회사, 지역, 업종" oninput="renderSearch()"></div>
+  <div class="search">🔍 <input id="q" placeholder="이름, 졸업연도, 회사, 지역, 업종" oninput="renderSearch()"></div>
   <div class="chips" id="searchChips"></div>
   <div class="list" id="searchList"></div>
 </section>
@@ -956,7 +953,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   <div class="top"><div class="brand">내 정보</div><div class="pill" onclick="signOut()">로그아웃</div></div>
   <div id="meStatus"></div>
   <div class="field"><label>이름</label><input id="meName"></div>
-  <div class="pair"><div class="field"><label>회차</label><input id="meClass" type="number"></div><div class="field"><label>졸업연도</label><input id="meYear" type="number"></div></div>
+  <div class="field"><label>졸업연도</label><input id="meYear" type="number" placeholder="예: 1992" inputmode="numeric"></div>
   <div class="field"><label>직업</label><input id="meJob"></div>
   <div class="field"><label>직장명</label><input id="meCompany" placeholder="예: 삼일회계법인"></div>
   <div class="field"><label>직장 주소 (건물명까지)</label><input id="meCompanyAddr" placeholder="예: 서울 종로구 종로 26 서린빌딩"></div>
@@ -1076,6 +1073,13 @@ function back(){history.pop();go(history[history.length-1]||'home',false)}
 const fm=v=>v>=1000?(v/1000).toFixed(1)+'km':Math.round(v)+'m';
 function dist(a){if(a.lat==null)return 1e9;const R=6371000,dl=(a.lat-here.lat)*Math.PI/180,dg=(a.lng-here.lng)*Math.PI/180,x=Math.sin(dl/2)**2+Math.cos(here.lat*Math.PI/180)*Math.cos(a.lat*Math.PI/180)*Math.sin(dg/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
 const isVerified=()=>me&&me.status==='verified';
+// 졸업연도 → 회차 자동 계산 (75회 = 1989년 졸업 기준)
+const CLASS_BASE_YEAR = 1914; // 1회 졸업연도
+const yearToClass = y => y ? (y - CLASS_BASE_YEAR) : 0;
+const classToYear = c => c ? (c + CLASS_BASE_YEAR) : null;
+// 표시용: 졸업연도 우선, 없으면 회차로 역산
+const gradLabel = p => p.grad_year ? `${p.grad_year}년 졸업` : (p.class_no ? `${classToYear(p.class_no)}년 졸업` : '');
+const gradShort = p => p.grad_year ? `${String(p.grad_year).slice(2)}년졸` : (p.class_no ? `${String(classToYear(p.class_no)).slice(2)}년졸` : '');
 const initial=n=>(n||'?').trim().slice(n&&n.length>1?1:0,n&&n.length>1?2:1);
 function err(e){console.error(e);toast((e&&e.message)||'오류가 났습니다')}
 
@@ -1110,13 +1114,13 @@ async function boot(){
  renderMe();renderCard();
 }
 async function saveOnboard(){
- const name=$('#obName').value.trim(),cls=parseInt($('#obClass').value);
+ const name=$('#obName').value.trim(),yr=parseInt($('#obYear').value);
  if(!name)return toast('이름을 입력해 주세요');
- if(!cls)return toast('졸업 회차를 입력해 주세요');
+ if(!yr||yr<1950||yr>2100)return toast('졸업연도를 정확히 입력해 주세요 (예: 1992)');
  if(!$('#obPrivacy').checked)return toast('개인정보 수집·이용에 동의해야 가입할 수 있습니다');
  const {error}=await SB.from('profiles').upsert({
-   id:session.user.id, name, class_no:cls,
-   grad_year:parseInt($('#obYear').value)||null,
+   id:session.user.id, name, class_no:yearToClass(yr),
+   grad_year:yr,
    status:'verified',
    allow_contact:false,        // 기본 연락 차단
    vis_company:'none',          // 기본 직장 비공개
@@ -1130,7 +1134,7 @@ async function saveOnboard(){
 
 // ================= DATA =================
 async function loadData(){
- const [p,q]=await Promise.all([SB.from('places').select('*').eq('approved',true),SB.from('public_profiles').select('*')]);
+ const [p,q]=await Promise.all([SB.from('places').select('*, owner:profiles!places_owner_id_fkey(id,name,class_no,grad_year,job,phone,allow_contact)').eq('approved',true),SB.from('public_profiles').select('*')]);
  places=(p.data||[]).map(x=>({...x,t:TYPE[x.type]}));
  people=(q.data||[]).map(x=>({...x,lat:x.company_lat,lng:x.company_lng}));
  // 본인 직장도 지도에 표시 (나만 보임)
@@ -1224,24 +1228,38 @@ function renderHome(){
  const show=t=>homeFilter==='all'||homeFilter===t;const inR=o=>!radius||dist(o)<=radius;
  const ps=places.filter(p=>show(p.t)), ws=show('w')?people.filter(p=>p.lat!=null):[];
  MAP.clear();
- ps.forEach(p=>MAP.add(p.lat,p.lng,pinHTML(p.t,`${p.name}${p.benefit_rate?' '+p.benefit_rate+'%':''}`,{a:'동',p:'혜',r:'추',d:'★'}[p.t]),()=>openPlace(p.id)));
- ws.forEach(w=>MAP.add(w.lat,w.lng,pinHTML(w.isMe?'me-pin w':'w',`${w.name}${w.isMe?'':' · '+w.class_no+'회'}`,w.isMe?'나':'직'),()=>{w.isMe?(history=['me'],go('me',false)):openProfile(w.id)}));
+ ps.forEach(p=>MAP.add(p.lat,p.lng,pinHTML(p.t,`${p.name}${p.owner&&p.type!=='partner'?' · '+p.owner.name+' '+gradShort(p.owner):''}${p.benefit_rate?' '+p.benefit_rate+'%':''}`,{a:'동',p:'혜',r:'추',d:'★'}[p.t]),()=>openPlace(p.id)));
+ ws.forEach(w=>MAP.add(w.lat,w.lng,pinHTML(w.isMe?'me-pin w':'w',`${w.name}${w.isMe?'':' · '+gradShort(w)}`,w.isMe?'나':'직'),()=>{w.isMe?(history=['me'],go('me',false)):openProfile(w.id)}));
  MAP.me(here);
  const psR=ps.filter(inR).sort((a,b)=>dist(a)-dist(b)),wsR=ws.filter(inR).sort((a,b)=>dist(a)-dist(b));
  $('#homeSummary').textContent=`${here.real?'내 위치':'여의도'} 기준 ${radius?fm(radius):'전체'} · 동문 ${wsR.length}명 · 장소 ${psR.length}곳`;
  const items=psR.map(placeCard).concat(wsR.map(personCard));
  $('#homeList').innerHTML=items.join('')||`<div class="empty">${isVerified()?'이 범위에 등록된 동문·장소가 아직 없습니다.<br>반경을 넓히거나, 내 정보에서 직장·사업장을 먼저 등록해 보세요.':'인증이 완료되면 여기에 주변 동문이 표시됩니다.'}</div>`;
 }
-function placeCard(p){return `<div class="card" onclick="openPlace('${p.id}')"><div class="av ${p.t}">${{a:'동',p:'혜',r:'추',d:'★'}[p.t]}</div><div><h4>${esc(p.name)}<span class="tag ${{a:'g',p:'a',r:'r',d:'d'}[p.t]}">${TYPE_KO[p.type]}${p.benefit_rate?' '+p.benefit_rate+'%':''}</span></h4><p>${esc(p.category||'')}${p.benefit_text?' · '+esc(p.benefit_text):''}</p></div><div class="dist">${p.lat!=null?fm(dist(p)):''}</div></div>`}
-function personCard(w){return `<div class="card" onclick="${w.isMe?'history=[\'me\'];go(\'me\',false)':`openProfile('${w.id}')`}" style="${w.isMe?'background:#E3EFE8;border-radius:10px;padding:10px 12px;margin:4px 0':''}"><div class="av ${w.isMe?'':(w.can_message?'':'x')}">${initial(w.name)}</div><div><h4>${esc(w.name)}<span class="tag g">${w.class_no}회</span></h4><p>${esc(w.company||'')}${w.job?' · '+esc(w.job):''} · ${w.can_message?'연락 허용':'연락 비공개'}</p></div><div class="dist" style="${w.isMe?'color:var(--green);font-weight:600':(w.can_message?'color:var(--green);font-weight:600':'')}">${w.lat!=null?fm(dist(w)):''}${w.isMe?'<br>내 직장':(w.can_message?'<br>메시지':'')}</div></div>`}
+function placeCard(p){
+  const isDonorCard=p.t==='d';
+  const own = p.owner;
+  const ownerLine = own ? `${esc(own.name)} ${gradShort(own)}${own.job?' · '+esc(own.job):''}` : '';
+  return `<div class="card" onclick="openPlace('${p.id}')" style="${isDonorCard?'background:linear-gradient(135deg,#FFF8E1,#fff);border:1px solid #FFD700;margin:4px 0;border-radius:12px;padding:10px 12px':''}">
+    <div class="av ${p.t}" style="${isDonorCard?'background:linear-gradient(135deg,#C0392B,#E74C3C);font-size:20px':''}">${{a:'동',p:'혜',r:'추',d:'★'}[p.t]||'?'}</div>
+    <div style="flex:1;min-width:0">
+      <h4>${esc(p.name)}<span class="tag ${{a:'g',p:'a',r:'r',d:'d'}[p.t]}">${TYPE_KO[p.type]}${p.benefit_rate?' '+p.benefit_rate+'%':''}</span></h4>
+      <p>${esc(p.category||'')}${p.benefit_text?' · '+esc(p.benefit_text):''}</p>
+      ${ownerLine?`<p style="color:var(--green);font-weight:600;margin-top:3px">👤 ${ownerLine}</p>`:''}
+    </div>
+    <div class="dist">${p.lat!=null?fm(dist(p)):''}</div>
+  </div>`;
+}
+
+function personCard(w){return `<div class="card" onclick="${w.isMe?'history=[\'me\'];go(\'me\',false)':`openProfile('${w.id}')`}" style="${w.isMe?'background:#E3EFE8;border-radius:10px;padding:10px 12px;margin:4px 0':''}"><div class="av ${w.isMe?'':(w.can_message?'':'x')}">${initial(w.name)}</div><div><h4>${esc(w.name)}<span class="tag g">${gradShort(w)}</span></h4><p>${esc(w.company||'')}${w.job?' · '+esc(w.job):''} · ${w.can_message?'연락 허용':'연락 비공개'}</p></div><div class="dist" style="${w.isMe?'color:var(--green);font-weight:600':(w.can_message?'color:var(--green);font-weight:600':'')}">${w.lat!=null?fm(dist(w)):''}${w.isMe?'<br>내 직장':(w.can_message?'<br>메시지':'')}</div></div>`}
 
 // ================= SEARCH =================
 const sFilters=[['all','전체'],['w','동문'],['a','동문 사업장'],['d','✦기부기업'],['p','제휴 혜택'],['r','추천 장소']];
 function renderSearch(){
  $('#searchChips').innerHTML=sFilters.map(([k,l])=>`<span class="chip ${searchFilter===k?'on':''}" onclick="searchFilter='${k}';renderSearch()">${l}</span>`).join('');
  const q=$('#q').value.trim().toLowerCase();const hit=s=>!q||String(s??'').toLowerCase().includes(q);let out='';
- if(searchFilter==='all'||searchFilter==='w'){const ws=people.filter(a=>hit(a.name)||hit(a.company)||hit(a.company_addr)||hit(a.job)||hit(a.class_no+'회')||hit(a.home_dong)).sort((a,b)=>dist(a)-dist(b));if(ws.length)out+=`<div class="sec">동문 · ${ws.length}명</div>`+ws.map(personCard).join('')}
- if(searchFilter!=='w'){const ps=places.filter(p=>(searchFilter==='all'||p.t===searchFilter)&&(hit(p.name)||hit(p.category)||hit(p.address)||hit(p.benefit_text))).sort((a,b)=>dist(a)-dist(b));if(ps.length)out+=`<div class="sec">장소 · ${ps.length}곳</div>`+ps.map(placeCard).join('')}
+ if(searchFilter==='all'||searchFilter==='w'){const ws=people.filter(a=>hit(a.name)||hit(a.company)||hit(a.company_addr)||hit(a.job)||hit(a.grad_year)||hit(classToYear(a.class_no))||hit(a.home_dong)).sort((a,b)=>dist(a)-dist(b));if(ws.length)out+=`<div class="sec">동문 · ${ws.length}명</div>`+ws.map(personCard).join('')}
+ if(searchFilter!=='w'){const ps=places.filter(p=>(searchFilter==='all'||p.t===searchFilter)&&(hit(p.name)||hit(p.category)||hit(p.address)||hit(p.benefit_text)||hit(p.owner?.name)||hit(p.owner?.grad_year))).sort((a,b)=>dist(a)-dist(b));if(ps.length)out+=`<div class="sec">장소 · ${ps.length}곳</div>`+ps.map(placeCard).join('')}
  $('#searchList').innerHTML=out||`<div class="empty">${isVerified()?(q?`'${esc(q)}'에 해당하는 결과가 없습니다.`:'이름, 회차, 회사, 지역으로 찾아보세요.'):'인증이 완료되면 검색할 수 있습니다.'}</div>`;
 }
 
@@ -1250,11 +1268,11 @@ function openProfile(id){
  const a=people.find(x=>x.id===id);if(!a)return;
  $('#sc-profile').innerHTML=`
  <div class="top"><div class="back" onclick="back()">‹ 동문 프로필</div><div class="pill" onclick="reportUser('${a.id}')">신고</div></div>
- <div class="hero"><div class="row"><div class="av ${a.can_message?'':'x'}">${initial(a.name)}</div><div><h2>${esc(a.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${a.class_no}회${a.grad_year?' · '+a.grad_year+'년 졸업':''}</span></h2><div class="meta">${esc(a.company||'직장 비공개')}${a.job?' · '+esc(a.job):''}<br>${esc(a.company_addr||'')}${a.lat!=null?' · '+fm(dist(a)):''}</div></div></div>
+ <div class="hero"><div class="row"><div class="av ${a.can_message?'':'x'}">${initial(a.name)}</div><div><h2>${esc(a.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${gradLabel(a)}</span></h2><div class="meta">${esc(a.company||'직장 비공개')}${a.job?' · '+esc(a.job):''}<br>${esc(a.company_addr||'')}${a.lat!=null?' · '+fm(dist(a)):''}</div></div></div>
  <div class="st ${a.can_message?'ok':'no'}"><i></i>${a.can_message?'연락 허용':'연락 비공개'}</div></div>
  <div class="info"><div><span>거주지</span><span>${esc(a.home_dong||'비공개')}</span></div><div><span>추천 장소</span><span>${esc(a.recommend_note||'—')}</span></div><div><span>동문회 활동</span><span>${esc(a.role_note||'—')}</span></div></div>
  ${a.lat!=null?`<button class="btn ghost" onclick="openNav('${esc(a.company||a.name)}',${a.lat},${a.lng})">직장 위치로 길 안내</button>`:''}
- ${a.can_message?`<div class="compose"><label>첫 메시지 · 하루 5건</label><textarea id="msgText">안녕하세요, ${me.class_no}회 ${esc(me.name)}입니다. 언제 시간 되시면 인사드리러 찾아뵙겠습니다.</textarea><div class="from">발신자 정보 자동 첨부 · ${esc(me.name)} · ${me.class_no}회${me.job?' · '+esc(me.job):''}</div></div>
+ ${a.can_message?`<div class="compose"><label>첫 메시지 · 하루 5건</label><textarea id="msgText">안녕하세요, ${me.grad_year||classToYear(me.class_no)}년 졸업 ${esc(me.name)}입니다. 언제 시간 되시면 인사드리러 찾아뵙겠습니다.</textarea><div class="from">발신자 정보 자동 첨부 · ${esc(me.name)} · ${gradLabel(me)}${me.job?' · '+esc(me.job):''}</div></div>
  <div class="warn">첫 연락에서는 상대 연락처가 보이지 않습니다. 상대가 수락하면 카카오톡 오픈채팅 링크를 받게 됩니다.</div>
  <button class="btn" onclick="sendMsg('${a.id}')">메시지 보내기</button>`
  :`<div class="note">이 동문은 먼저 오는 연락을 받지 않습니다. 동문회 행사나 기수 대표를 통해 인사할 수 있습니다.</div>`}
@@ -1278,7 +1296,7 @@ const STATUS_KO={sent:'전송됨 · 수락 대기',accepted:'수락됨',declined
 function renderMsgs(){
  const uid=session.user.id;
  $('#msgList').innerHTML=msgs.map(x=>{const mine=x.from_id===uid;const other=mine?x.receiver:x.sender;
-  return `<div class="msg"><div class="h"><b>${mine?'→':'←'} ${esc(other?.name||'동문')} <span style="font-weight:500">${other?.class_no||''}회</span></b><span>${new Date(x.created_at).toLocaleDateString('ko-KR')}</span></div><p>${esc(x.body)}</p>
+  return `<div class="msg"><div class="h"><b>${mine?'→':'←'} ${esc(other?.name||'동문')} <span style="font-weight:500">${other?gradShort(other):''}</span></b><span>${new Date(x.created_at).toLocaleDateString('ko-KR')}</span></div><p>${esc(x.body)}</p>
   <div class="s">${STATUS_KO[x.status]}${x.status==='accepted'&&x.open_chat_url?` · <a href="${esc(x.open_chat_url)}" target="_blank" style="color:var(--green)">카카오톡 오픈채팅 열기</a>`:''}</div>
   ${!mine&&x.status==='sent'?`<div class="acts"><button class="pri" onclick="acceptMsg('${x.id}')">수락 · 카톡 링크 보내기</button><button onclick="declineMsg('${x.id}')">거절</button><button onclick="blockUser('${x.from_id}','${x.id}')">차단</button></div>`:''}</div>`}).join('')
   ||'<div class="empty">아직 메시지가 없습니다.<br>지도나 검색에서 동문을 찾아 첫 인사를 보내 보세요.</div>';
@@ -1294,9 +1312,31 @@ function openPlace(id){
  $('#sc-place').innerHTML=`
  <div class="photo" style="background:${grad}"><div class="top" style="position:absolute;top:0;left:0;right:0"><div class="back" style="color:#fff" onclick="back()">‹ ${TYPE_KO[p.type]}</div></div><div class="badge" style="${isDonor?'background:#FFD700;color:#7B241C':partner?'':'background:#fff;color:var(--green)'}">${isDonor?'✦ 기부 기업':partner?'숭실 동문회 제휴점':TYPE_KO[p.type]}${p.approved?'':' · 승인 대기'}</div></div>
  <div class="h1" style="padding-top:12px">${esc(p.name)}</div>
- <div class="sub">${esc(p.category||'')}${p.address?' · '+esc(p.address):''}${p.hours?' · '+esc(p.hours):''} · ${fm(dist(p))}</div>
+ <div class="sub">${esc(p.category||'')}${p.address?' · '+esc(p.address):''}${p.hours?' · '+esc(p.hours):''} · ${fm(dist(p))}${p.owner&&p.type!=='partner'?`<br><span style="color:var(--green);font-weight:600">👤 ${esc(p.owner.name)} ${gradShort(p.owner)}</span>`:''}</div>
  ${p.benefit_text||p.benefit_rate?`<div class="offer"><div class="big">${p.benefit_rate?p.benefit_rate+'<small>% 할인</small>':'<span style="font-size:20px">'+esc(p.benefit_text)+'</span>'}</div>${p.benefit_rate&&p.benefit_text?`<p>${esc(p.benefit_text)}</p>`:''}</div>`:''}
- ${isDonor?'<div class="note" style="background:#FFF5F5;border-color:#F1948A;color:#922B21"><b>✦ 기부 기업</b> · 이 기업/가게는 숭실고 총동문회에 기부를 약정했습니다. 이용 시 응원해 주세요.</div>':partner?'<div class="note">이 가게는 숭실 동문이 운영하지 않습니다. 동문회와 제휴해 혜택을 제공하는 일반 가게입니다. 가게는 동문 명단·연락처를 볼 수 없습니다.</div>':''}
+ ${(() => {
+   const own = p.owner;
+   if(!own || p.type==='partner') return '';
+   const isMine = own.id === session.user.id;
+   return `<div style="margin:12px 20px 0;background:#fff;border:1px solid var(--green);border-radius:14px;padding:14px">
+     <div style="font-size:11px;color:var(--mute);margin-bottom:8px">${p.type==='alumni_biz'?'운영 동문':'등록 동문'}</div>
+     <div style="display:flex;align-items:center;gap:12px">
+       <div class="av" style="width:44px;height:44px;font-size:15px">${initial(own.name)}</div>
+       <div style="flex:1;min-width:0">
+         <div style="font-size:15px;font-weight:700">${esc(own.name)}</div>
+         <div style="font-size:12px;color:var(--mute);margin-top:2px">${gradLabel(own)}${own.job?' · '+esc(own.job):''}</div>
+       </div>
+     </div>
+     ${isMine ? '<div class="note" style="margin:10px 0 0;font-size:11px">내가 등록한 장소입니다</div>' :
+       `<div style="display:flex;gap:8px;margin-top:12px">
+         ${own.allow_contact
+           ? `<button onclick="openProfile('${own.id}')" style="flex:1;border:0;background:var(--green);color:#fff;border-radius:10px;padding:11px;font:inherit;font-size:13px;font-weight:600;cursor:pointer">💬 동문에게 메시지</button>`
+           : `<button disabled style="flex:1;border:1px solid var(--line);background:#F0EFE9;color:#999;border-radius:10px;padding:11px;font:inherit;font-size:13px">메시지 비허용</button>`}
+         <button onclick="openProfile('${own.id}')" style="flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px;font:inherit;font-size:13px;cursor:pointer">프로필 보기</button>
+       </div>`}
+   </div>`;
+ })()}
+ ${isDonor?'<div class="note" style="background:#FFF5F5;border-color:#F1948A;color:#922B21"><b>★ 기부 기업</b> · 이 기업/가게는 숭실고 총동문회에 기부를 약정했습니다. 이용 시 응원해 주세요.</div>':partner?'<div class="note">이 가게는 숭실 동문이 운영하지 않습니다. 동문회와 제휴해 혜택을 제공하는 일반 가게입니다. 가게는 동문 명단·연락처를 볼 수 없습니다.</div>':''}
  ${p.type!=='recommend'&&p.approved?`<div class="two"><button class="btn ghost" onclick="useBenefit('${p.id}')">혜택 받았어요</button><button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button></div>`:`<button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button>`}
  <button class="btn ghost" onclick="history=['home'];go('home',false);MAP.setCenter({lat:${p.lat},lng:${p.lng}},${MAP.provider==='kakao'?3:16})">지도에서 보기</button>
  ${partner?`<button class="btn ghost" style="color:var(--red)" onclick="reportPlace('${p.id}')">혜택을 안 지켰어요</button>`:''}
@@ -1316,7 +1356,7 @@ function openNav(name,lat,lng){
 
 // ================= ID CARD =================
 async function renderCard(){
- $('#cardName').textContent=me.name;$('#cardMeta').textContent=`${me.class_no}회${me.grad_year?' · '+me.grad_year+'년 졸업':''}`;
+ $('#cardName').textContent=me.name;$('#cardMeta').textContent=gradLabel(me);
  let token='';if(isVerified()){const {data}=await SB.rpc('my_daily_token');token=data||''}
  let cells='';for(let i=0;i<121;i++){const r=Math.floor(i/11),c=i%11;const corner=(r<3&&c<3)||(r<3&&c>7)||(r>7&&c<3);let on;if(corner)on=!((r===1&&c===1)||(r===1&&c===9)||(r===9&&c===1));else on=token?(parseInt(token[i%token.length],16)&1)===1:false;cells+=`<i class="${on?'':'o'}"></i>`}
  $('#qr').innerHTML=cells;const d=new Date();
@@ -1342,7 +1382,7 @@ function renderMe(){
      <button onclick="previewMyProfile()" style="margin-top:10px;width:100%;border:1px solid ${onMap?'var(--green)':'#F0D48A'};background:#fff;color:${onMap?'var(--green)':'#8A6205'};border-radius:9px;padding:9px;font:inherit;font-size:12px;font-weight:600;cursor:pointer">👁 다른 동문에게 보이는 내 모습 확인</button>
    </div>
    ${me.is_admin?'<div class="note" style="margin-top:0">운영자 권한이 있습니다</div>':''}`;
- $('#meName').value=me.name||'';$('#meClass').value=me.class_no||'';$('#meYear').value=me.grad_year||'';$('#meJob').value=me.job||'';$('#meCompany').value=me.company||'';$('#meCompanyAddr').value=me.company_addr||'';$('#meDong').value=me.home_dong||'';$('#meRole').value=me.role_note||'';$('#meRec').value=me.recommend_note||'';$('#mePhone').value=me.phone||'';
+ $('#meName').value=me.name||'';$('#meYear').value=me.grad_year||classToYear(me.class_no)||'';$('#meJob').value=me.job||'';$('#meCompany').value=me.company||'';$('#meCompanyAddr').value=me.company_addr||'';$('#meDong').value=me.home_dong||'';$('#meRole').value=me.role_note||'';$('#meRec').value=me.recommend_note||'';$('#mePhone').value=me.phone||'';
  if(me.company_lat!=null)MINI.pts.me={lat:me.company_lat,lng:me.company_lng};
  renderPrivacy();renderAdmin();
 }
@@ -1351,9 +1391,9 @@ function renderPrivacy(){
  $('#privacy').innerHTML=seg('vis_company','직장 공개','지도에 직장 위치 표시')+seg('vis_home','거주지 공개','동 단위까지만')+`<div><span>연락 허용<small>기본은 꺼짐 · 켜면 첫 메시지를 받습니다</small></span><div class="sw ${privacy.allow_contact?'on':''}" onclick="privacy.allow_contact=!privacy.allow_contact;renderPrivacy()"></div></div>`;
 }
 async function saveMe(){
- const cls=parseInt($('#meClass').value);if(!$('#meName').value.trim()||!cls)return toast('이름과 회차는 필수입니다');
+ const yr=parseInt($('#meYear').value);if(!$('#meName').value.trim())return toast('이름을 입력해 주세요');if(!yr||yr<1950||yr>2100)return toast('졸업연도를 정확히 입력해 주세요 (예: 1992)');const cls=yearToClass(yr);
  const pt=MINI.pts.me||{};
- const row={name:$('#meName').value.trim(),class_no:cls,grad_year:parseInt($('#meYear').value)||null,job:$('#meJob').value.trim()||null,company:$('#meCompany').value.trim()||null,company_addr:$('#meCompanyAddr').value.trim()||null,company_lat:pt.lat??null,company_lng:pt.lng??null,home_dong:$('#meDong').value.trim()||null,role_note:$('#meRole').value.trim()||null,recommend_note:$('#meRec').value.trim()||null,phone:$('#mePhone').value.trim()||null,vis_company:privacy.vis_company,vis_home:privacy.vis_home,allow_contact:privacy.allow_contact,updated_at:new Date().toISOString()};
+ const row={name:$('#meName').value.trim(),class_no:cls,grad_year:yr,job:$('#meJob').value.trim()||null,company:$('#meCompany').value.trim()||null,company_addr:$('#meCompanyAddr').value.trim()||null,company_lat:pt.lat??null,company_lng:pt.lng??null,home_dong:$('#meDong').value.trim()||null,role_note:$('#meRole').value.trim()||null,recommend_note:$('#meRec').value.trim()||null,phone:$('#mePhone').value.trim()||null,vis_company:privacy.vis_company,vis_home:privacy.vis_home,allow_contact:privacy.allow_contact,updated_at:new Date().toISOString()};
  const {error}=await SB.from('profiles').update(row).eq('id',session.user.id);if(error)return err(error);
  me={...me,...row};
  // 저장 후 안내
@@ -1415,7 +1455,7 @@ function renderBoard(){
     posts.map(p=>`<div class="msg" onclick="openPost('${p.id}')">
       <div class="h"><b>${esc(p.title||'(제목 없음)')}</b><span>${new Date(p.created_at).toLocaleDateString('ko-KR')}</span></div>
       <p style="margin-top:4px">${esc((p.body||'').slice(0,80))}${(p.body||'').length>80?'…':''}</p>
-      <div class="s">${esc(p.profiles?.name||'동문')} · ${p.profiles?.class_no||''}회 · 댓글 ${p.reply_count||0}개</div>
+      <div class="s">${esc(p.profiles?.name||'동문')} · ${p.profiles?gradShort(p.profiles):''} · 댓글 ${p.reply_count||0}개</div>
     </div>`).join('') :
     '<div class="empty">아직 게시글이 없습니다.<br>첫 번째로 가입 인사를 남겨보세요!</div>';
 }
@@ -1424,13 +1464,13 @@ async function openPost(id){
   const p = posts.find(x=>x.id===id); if(!p) return;
   const {data:replies} = await SB.from('board_replies').select('*, profiles(name,class_no)').eq('post_id',id).order('created_at');
   const rList = (replies||[]).map(r=>`<div class="msg" style="margin:0 20px 8px;background:#F7F6F1">
-    <div class="h"><b>${esc(r.profiles?.name||'동문')} ${r.profiles?.class_no||''}회</b><span>${new Date(r.created_at).toLocaleDateString('ko-KR')}</span></div>
+    <div class="h"><b>${esc(r.profiles?.name||'동문')} ${r.profiles?gradShort(r.profiles):''}</b><span>${new Date(r.created_at).toLocaleDateString('ko-KR')}</span></div>
     <p>${esc(r.body||'')}</p>
   </div>`).join('');
   $('#postViewContent').innerHTML = `
     <div class="hero" style="margin-bottom:0;border-radius:0;border:0;border-bottom:1px solid var(--line)">
       <h2 style="font-size:18px">${esc(p.title||'')}</h2>
-      <div class="meta">${esc(p.profiles?.name||'동문')} · ${p.profiles?.class_no||''}회 · ${new Date(p.created_at).toLocaleDateString('ko-KR')}</div>
+      <div class="meta">${esc(p.profiles?.name||'동문')} · ${p.profiles?gradLabel(p.profiles):''} · ${new Date(p.created_at).toLocaleDateString('ko-KR')}</div>
     </div>
     <div style="padding:16px 20px;font-size:15px;line-height:1.7;white-space:pre-wrap">${esc(p.body||'')}</div>
     <div style="border-top:1px solid var(--line);padding:12px 20px 4px;font-size:12px;color:var(--mute)">댓글 ${(replies||[]).length}개</div>
@@ -1479,7 +1519,7 @@ function previewMyProfile(){
   </div>
 
   <div class="hero"><div class="row"><div class="av ${me.allow_contact?'':'x'}">${initial(me.name)}</div>
-    <div><h2>${esc(me.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${me.class_no}회${me.grad_year?' · '+me.grad_year+'년 졸업':''}</span></h2>
+    <div><h2>${esc(me.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${gradLabel(me)}</span></h2>
     <div class="meta">${showCompany?(esc(me.company||'직장 미등록')+(me.job?' · '+esc(me.job):'')):'<span style="color:#C0392B">직장 비공개</span>'}<br>
     ${showCompany?esc(me.company_addr||''):''}</div></div></div>
     <div class="st ${me.allow_contact?'ok':'no'}"><i></i>${me.allow_contact?'연락 허용':'연락 비공개'}</div></div>
@@ -1493,7 +1533,7 @@ function previewMyProfile(){
   <div style="margin:14px 20px 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px">
     <div style="font-size:13px;font-weight:700;margin-bottom:10px">현재 공개 범위</div>
     <div style="font-size:12px;line-height:2;color:#333">
-      <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">이름 · 회차</span><b>모든 동문</b></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">이름 · 졸업연도</span><b>모든 동문</b></div>
       <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">직장 · 위치</span><b style="color:${showCompany?'var(--green)':'#C0392B'}">${visKo[me.vis_company]}</b></div>
       <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">거주지 (동)</span><b style="color:${showHome?'var(--green)':'#C0392B'}">${visKo[me.vis_home]}</b></div>
       <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">연락처</span><b style="color:#C0392B">아무에게도 (본인·운영자만)</b></div>
