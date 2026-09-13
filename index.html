@@ -818,7 +818,11 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
       <b>목적:</b> 숭실고 총동문회 동문 확인 및 동문 네트워크 서비스 제공<br>
       <b>보유:</b> 회원 탈퇴 시 즉시 전량 삭제<br>
       <b>제3자 제공:</b> 없음. 동문 명단·연락처는 제휴점 등 외부에 일절 제공하지 않습니다<br>
-      <b>주체:</b> 숭실고등학교 총동문회
+      <b>주체:</b> 숭실고등학교 총동문회<br>
+      <b>보호책임자:</b> 이동훈 사무국장 (010-8700-7333)
+    </div>
+    <div style="text-align:right;margin-bottom:8px">
+      <span onclick="openPrivacyPolicy()" style="font-size:11px;color:var(--green);text-decoration:underline;cursor:pointer">개인정보처리방침 전문 보기 ›</span>
     </div>
     <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;cursor:pointer;line-height:1.5">
       <input type="checkbox" id="obPrivacy" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px">
@@ -976,6 +980,9 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
       · 하루 메시지 5건 제한 · 영업성 문구 자동 경고<br>
       · 언제든 <b>차단·신고</b> 가능, 신고 3회 시 자동 발송 정지
     </div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(31,77,58,.2);font-size:11px;color:#2E6B50">
+      개인정보 보호책임자 · <b>이동훈 사무국장</b> <a href="tel:010-8700-7333" style="color:var(--green)">010-8700-7333</a>
+    </div>
   </div>
 
   <button class="btn" onclick="saveMe()">저장</button>
@@ -989,6 +996,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   <div id="adminBox"></div>
 
   <div class="h1" style="padding-top:26px;font-size:17px">계정 관리</div>
+  <button class="btn ghost" onclick="openPrivacyPolicy()">📄 개인정보처리방침</button>
   <button class="btn ghost" onclick="downloadMyData()">📥 내 정보 내려받기</button>
   <button class="btn ghost" style="color:var(--red);border-color:#F1948A" onclick="deleteAccount()">회원 탈퇴 · 내 정보 전부 삭제</button>
   <div class="note" style="font-size:11px">탈퇴하면 프로필·게시글·메시지·등록 장소가 즉시 모두 삭제되며 복구할 수 없습니다.</div>
@@ -996,6 +1004,105 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 </section>
 
 <!-- PLACE FORM -->
+<section class="screen" id="sc-privacy">
+  <div class="top" style="padding-top:26px"><div class="back" onclick="back()">‹ 개인정보처리방침</div></div>
+  <div style="padding:0 20px 30px;font-size:13px;line-height:1.8;color:#333">
+
+    <div style="background:#E3EFE8;border:1px solid var(--green);border-radius:12px;padding:14px;margin-bottom:18px">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">숭실고등학교 총동문회</div>
+      <div style="font-size:12px;color:#2E6B50;line-height:1.7">
+        본 방침은 '숭실고 동문 찾기' 서비스에 적용됩니다.<br>
+        시행일: 2026년 9월 13일
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">1. 수집하는 개인정보 항목</h3>
+    <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12px">
+      <b>필수 항목</b><br>· 이름, 졸업연도<br>· 카카오 계정 식별자(로그인용)<br><br>
+      <b>선택 항목</b> (본인이 직접 입력할 때만 수집)<br>
+      · 직업, 직장명, 직장 주소 및 위치<br>
+      · 거주지(시·구·동 단위까지만)<br>
+      · 연락처, 동문회 활동, 추천 장소<br>
+      · 사업장 정보(상호, 업종, 주소, 사업자등록번호)<br><br>
+      <b>자동 수집</b><br>· 접속 일시, 서비스 이용 기록<br>· 현재 위치(지도 표시용, 저장하지 않음)
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">2. 수집·이용 목적</h3>
+    · 숭실고등학교 졸업생 확인 및 회원 관리<br>
+    · 동문 간 위치 기반 검색 및 연결<br>
+    · 동문 사업장·제휴 가맹점 정보 제공<br>
+    · 동문회 회비 및 기부 관리<br>
+    · 게시판 운영 및 공지 전달<br>
+    · 부정 이용 방지 및 신고 처리
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">3. 보유 및 이용 기간</h3>
+    회원 탈퇴 시 <b>즉시 전량 파기</b>합니다. 프로필, 게시글, 댓글, 주고받은 메시지, 등록한 장소가 모두 삭제되며 복구할 수 없습니다.<br><br>
+    다만 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">4. 제3자 제공</h3>
+    <div style="background:#FFF4D6;border:1px solid #F0D48A;border-radius:10px;padding:12px;font-size:12px;color:#6A4C05">
+      <b>동문의 개인정보를 외부에 제공하지 않습니다.</b><br><br>
+      · 제휴 가맹점은 동문 명단·연락처를 조회할 수 없습니다<br>
+      · 가맹점에는 혜택 이용 건수만 집계로 제공됩니다<br>
+      · 어떤 경우에도 명단을 판매하거나 대여하지 않습니다<br>
+      · 법령에 따른 수사기관 요청이 있을 때만 예외입니다
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">5. 처리 위탁</h3>
+    서비스 운영을 위해 아래에 데이터 처리를 위탁합니다.<br><br>
+    · <b>Supabase Inc.</b> — 데이터베이스 및 인증 (미국)<br>
+    · <b>Vercel Inc.</b> — 웹 호스팅 (미국)<br>
+    · <b>카카오</b> — 로그인 인증 (대한민국)
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">6. 정보주체의 권리</h3>
+    동문은 언제든지 아래 권리를 행사할 수 있습니다.<br><br>
+    · <b>열람</b> — 내 정보 탭에서 저장된 정보 전체 확인<br>
+    · <b>정정</b> — 내 정보 탭에서 직접 수정<br>
+    · <b>공개 범위 변경</b> — 항목별로 전체/±5년/비공개 선택<br>
+    · <b>내려받기</b> — 내 정보 전부를 파일로 저장<br>
+    · <b>삭제·탈퇴</b> — 내 정보 탭 하단에서 즉시 탈퇴
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">7. 안전성 확보 조치</h3>
+    · 가입 시 모든 항목이 <b>기본 비공개</b>이며 본인이 직접 켜야 공개<br>
+    · 연락처는 <b>본인과 운영자만</b> 조회 가능<br>
+    · 거주지는 <b>동 단위까지만</b> 저장(상세 주소 미수집)<br>
+    · 첫 메시지에 <b>발신자 연락처 미포함</b><br>
+    · 데이터베이스 접근 권한 제어(RLS)로 서버 단에서 차단<br>
+    · 메시지 하루 5건 제한, 영업성 문구 자동 경고<br>
+    · 신고 3회 누적 시 발송 자동 정지<br>
+    · 운영자 권한 최소 인원 유지
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">8. 개인정보 보호책임자</h3>
+    <div style="background:#fff;border:1px solid var(--green);border-radius:10px;padding:14px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:6px">이동훈 사무국장</div>
+      <div style="font-size:12px;color:var(--mute);line-height:1.8">
+        숭실고등학교 총동문회<br>
+        연락처 <a href="tel:010-8700-7333" style="color:var(--green);font-weight:600">010-8700-7333</a>
+      </div>
+      <div style="font-size:11px;color:var(--mute);margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">
+        개인정보 관련 문의, 열람·정정·삭제 요청, 피해 구제는 위 연락처로 문의해 주시기 바랍니다.
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">9. 권익침해 구제방법</h3>
+    <div style="font-size:12px;color:var(--mute);line-height:1.9">
+      · 개인정보분쟁조정위원회 1833-6972 (kopico.go.kr)<br>
+      · 개인정보침해신고센터 118 (privacy.kisa.or.kr)<br>
+      · 대검찰청 1301 (spo.go.kr)<br>
+      · 경찰청 182 (ecrm.police.go.kr)
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">10. 방침 변경</h3>
+    <div style="font-size:12px;color:var(--mute)">
+      본 방침이 변경되는 경우 앱 게시판을 통해 공지합니다.<br><br>
+      공고일: 2026년 9월 13일<br>
+      시행일: 2026년 9월 13일
+    </div>
+
+    <div style="height:20px"></div>
+  </div>
+</section>
+
 <section class="screen" id="sc-admin">
   <div class="top" style="padding-top:26px"><div class="back" onclick="back()">‹ 관리자</div>
     <div style="display:flex;gap:4px;overflow-x:auto;scrollbar-width:none">
@@ -1216,7 +1323,7 @@ function fitAll(){MAP.fit([...places,...people,here])}
 
 // ================= TAB =================
 const tabs=[['home','지도'],['search','검색'],['board','게시판'],['dues','회비·기부'],['me','내 정보']];
-function renderTab(active){const root={profile:'search',place:'home',placeform:'me'}[active]||active;$('#tab').innerHTML=tabs.map(([id,l])=>`<div class="${root===id?'on':''}" onclick="history=['${id}'];go('${id}',false)"><i></i>${l}</div>`).join('')}
+function renderTab(active){const root={profile:'search',place:'home',placeform:'me',privacy:'me',admin:'me',newpost:'board',postview:'board'}[active]||active;$('#tab').innerHTML=tabs.map(([id,l])=>`<div class="${root===id?'on':''}" onclick="history=['${id}'];go('${id}',false)"><i></i>${l}</div>`).join('')}
 
 // ================= HOME =================
 const filters=[['all','전체'],['a','동문 사업장'],['d','✦기부기업'],['p','제휴 혜택'],['w','동문 직장'],['r','추천 장소']];
@@ -1546,6 +1653,8 @@ function previewMyProfile(){
   <div style="height:24px"></div>`;
   go('profile');
 }
+
+function openPrivacyPolicy(){ go('privacy'); }
 
 // ================= 개인정보 · 계정 관리 =================
 async function downloadMyData(){
