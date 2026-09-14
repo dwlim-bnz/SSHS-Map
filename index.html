@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes,maximum-scale=5">
 <title>숭실고 동문 찾기 · 숭실고등학교 총동문회</title>
 <style>/* required styles */
 
@@ -665,6 +665,70 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 </style>
 <style>
+/* ===== 큰글씨(쉬운) 모드 ===== */
+body.big{font-size:18px}
+body.big .brand{font-size:21px;white-space:nowrap}
+body.big .top{padding:22px 16px 12px;gap:8px}
+body.big .pill{font-size:15px;padding:10px 14px;white-space:nowrap}
+body.big .h1{font-size:26px;padding-bottom:6px}
+body.big .sub{font-size:17px;line-height:1.7;padding-bottom:16px}
+body.big .card h4{font-size:20px;line-height:1.4}
+body.big .card p{font-size:16px;margin-top:5px;line-height:1.5}
+body.big .card{padding:18px 0;gap:16px}
+body.big .av{width:60px;height:60px;font-size:20px;border-radius:16px}
+body.big .dist{font-size:16px;font-weight:600}
+body.big .tag{font-size:14px;padding:4px 10px;margin-left:8px}
+body.big .chip{font-size:17px;padding:13px 20px;border-radius:14px}
+body.big .pill{font-size:16px;padding:11px 18px}
+body.big .btn{font-size:20px;padding:20px;border-radius:16px;font-weight:700}
+body.big .tab{height:96px;padding-top:14px}
+body.big .tab div{font-size:14px;width:auto;min-width:66px;gap:6px}
+body.big .tab i{width:30px;height:30px;border-radius:9px}
+body.big .note,body.big .banner{font-size:16px;line-height:1.7;padding:14px 18px}
+body.big .field{padding:14px 18px}
+body.big .field label{font-size:14px}
+body.big .field input,body.big .field select,body.big .field textarea{font-size:20px;margin-top:6px}
+body.big .search{padding:15px 18px;font-size:18px}
+body.big .search input{font-size:18px}
+body.big .hero h2{font-size:26px}
+body.big .hero .meta{font-size:17px;line-height:1.7}
+body.big .hero .av{width:78px;height:78px;font-size:28px}
+body.big .info div{font-size:18px;padding:17px 18px}
+body.big .st{font-size:15px;padding:8px 14px}
+body.big .sec{font-size:16px;margin:18px 0 6px}
+body.big .empty{font-size:18px;line-height:1.9;padding:40px 24px}
+body.big .toast{font-size:17px;padding:17px 20px;line-height:1.6}
+body.big .compose textarea{font-size:18px;min-height:120px}
+body.big .compose label{font-size:15px}
+body.big .msg{padding:18px}
+body.big .msg .h{font-size:17px}
+body.big .msg p{font-size:17px;line-height:1.7}
+body.big .msg .s{font-size:14px}
+body.big .mapwrap{height:58%;min-height:380px}
+body.big .pin em{font-size:15px;padding:4px 11px;font-weight:700}
+body.big .pin b{width:44px;height:44px}
+body.big .pin b span{font-size:17px}
+body.big .mapbtn{font-size:17px;padding:15px 18px;border-radius:14px;font-weight:700}
+body.big .legend{font-size:15px;padding:12px 16px;gap:7px}
+body.big .legend i{width:14px;height:14px;margin-right:9px}
+body.big .toggles>div{padding:16px 18px;font-size:18px}
+body.big .toggles small{font-size:14px;margin-top:4px}
+body.big .seg span{padding:10px 14px;font-size:15px}
+body.big .sw{width:60px;height:34px;border-radius:17px}
+body.big .sw:after{width:28px;height:28px;top:3px;left:3px}
+body.big .sw.on:after{left:29px}
+body.big .offer .big{font-size:44px}
+body.big .stat b{font-size:24px}
+body.big .stat span{font-size:14px}
+/* 큰글씨 모드에서 숨길 요소 */
+body.big .hide-big{display:none!important}
+body.big button:focus-visible,body.big .chip:focus-visible,body.big .pill:focus-visible,body.big .tab div:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+button:focus-visible,.chip:focus-visible,.pill:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+/* 큰글씨: 가독성 위해 줄간격·자간 */
+body.big{line-height:1.7;letter-spacing:-0.01em}
+body.big .card p,body.big .note,body.big .sub{word-break:keep-all}
+body.big .provider{display:none}
+
 :root{--green:#1F4D3A;--green-2:#2E6B50;--ink:#1B1F1D;--paper:#F7F6F1;--line:#E1DFD6;--mute:#6F726E;--amber:#D9A21B;--amber-bg:#FFF4D6;--blue:#2B5C9E;--blue-bg:#E4ECF7;--red:#B8362D}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -765,7 +829,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 .sw{width:44px;height:26px;border-radius:13px;background:#D6D4CC;position:relative;cursor:pointer;flex-shrink:0;transition:background .2s}
 .sw:after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s}
 .sw.on{background:var(--green)}.sw.on:after{left:21px}
-.toast{position:absolute;left:20px;right:20px;bottom:96px;background:#1B1F1D;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;z-index:2000;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;line-height:1.5}
+.toast{cursor:pointer;position:absolute;left:20px;right:20px;bottom:96px;background:#1B1F1D;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;z-index:2000;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;line-height:1.5}
 .toast.on{opacity:1;transform:none}
 .empty{padding:30px 20px;text-align:center;color:var(--mute);font-size:13px;line-height:1.6}
 .msg{margin:0 20px 10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px}
@@ -808,8 +872,8 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   <div class="h1" style="padding-top:10px">반갑습니다, 동문님</div>
   <div class="sub">이름과 졸업연도만 입력하면 가입이 완료됩니다.<br>직장·사업장 등 나머지 정보는 나중에 원하실 때 채우시면 됩니다.</div>
 
-  <div class="field"><label>이름 *</label><input id="obName" placeholder="홍길동"></div>
-  <div class="field"><label>졸업연도 *</label><input id="obYear" type="number" placeholder="예: 1992" inputmode="numeric"></div>
+  <div class="field"><label for="obName">이름 *</label><input id="obName" placeholder="홍길동"></div>
+  <div class="field"><label for="obYear">졸업연도 *</label><input id="obYear" type="number" placeholder="예: 1992" inputmode="numeric"></div>
 
   <div style="margin:16px 20px 0;background:#F7F6F1;border:1px solid var(--line);border-radius:14px;padding:14px">
     <div style="font-size:13px;font-weight:600;margin-bottom:10px">개인정보 수집·이용 동의</div>
@@ -844,21 +908,22 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 
 <!-- HOME -->
 <section class="screen" id="sc-home">
-  <div class="top"><div class="brand">숭실고 동문 찾기</div><div style="display:flex;gap:8px">
-    <div class="pill" onclick="shareKakao()" style="background:#FEE500;border-color:#FEE500;color:#191919;font-weight:600">💬 초대</div>
-    <div class="pill" id="locPill" onclick="locate(true)">위치 확인 중…</div>
+  <div class="top"><div class="brand" id="homeBrand">숭실고 동문 찾기</div><div style="display:flex;gap:6px">
+    <button class="pill" id="bigToggle" onclick="toggleBigMode()" aria-label="글씨 크기 바꾸기" style="font-weight:700;border-color:var(--green);color:var(--green);font-family:inherit;cursor:pointer">큰글씨</button>
+    <button class="pill" onclick="shareKakao()" aria-label="카카오톡으로 동문 초대하기" style="background:#FEE500;border-color:#FEE500;color:#191919;font-weight:600;font-family:inherit;cursor:pointer">💬 초대</button>
   </div></div>
+  <div id="locPill" onclick="locate(true)" style="display:none"></div>
   <div id="homeBanner"></div>
-  <div class="chips" id="homeChips"></div>
+  <div class="chips hide-big" id="homeChips"></div>
   <div class="mapwrap">
     <div id="mapEl"></div>
     <div class="provider" id="providerTag"></div>
-    <div class="mapbtn" style="top:12px" onclick="locate(true)">◎ 내 위치</div>
-    <div class="mapbtn" style="top:52px" onclick="fitAll()">⤢ 전체</div>
-    <div class="legend"><span><i style="background:var(--green)"></i>동문 사업장</span><span><i style="background:var(--amber)"></i>제휴 혜택</span><span><i style="background:var(--blue)"></i>동문 직장</span><span><i style="background:#7A5AA6"></i>추천 장소</span><span><i style="background:#C0392B;outline:2px solid #FFD700;outline-offset:1px;border-radius:50%"></i>기부 기업</span></div>
+    <button class="mapbtn" style="top:12px;font-family:inherit;border:0;cursor:pointer" onclick="locate(true)" aria-label="내 현재 위치로 지도 이동">◎ 내 위치</button>
+    <div class="mapbtn hide-big" style="top:52px" onclick="fitAll()">⤢ 전체</div>
+    <div class="legend hide-big"><span><i style="background:var(--green)"></i>동문 가게</span><span><i style="background:var(--amber)"></i>할인 가게</span><span><i style="background:var(--blue)"></i>동문 직장</span><span><i style="background:#7A5AA6"></i>추천 장소</span><span><i style="background:#C0392B;outline:2px solid #FFD700;outline-offset:1px;border-radius:50%"></i>기부 기업</span></div>
   </div>
   <div class="sheet"><div class="grab"></div>
-    <div class="chips" id="radiusChips" style="padding:0 0 8px"></div>
+    <div class="chips hide-big" id="radiusChips" style="padding:0 0 8px"></div>
     <div id="homeSummary" style="font-size:13px;color:var(--mute);margin-bottom:4px"></div><div id="homeList"></div></div>
 </section>
 
@@ -939,8 +1004,8 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   <div style="height:30px"></div>
 </section>
 <section class="screen" id="sc-card">
-  <div class="top"><div class="brand">인증카드</div><div class="pill" onclick="toast('가게에서 이 화면을 보여주면 혜택이 적용됩니다')">사용 안내</div></div>
-  <div class="idcard"><div class="sc">숭실고등학교 총동문회</div><h3>동문 인증 카드</h3><div class="nm"><b id="cardName"></b><span id="cardMeta"></span></div><div class="qr" id="qr"></div><div class="exp" id="cardExp"></div></div>
+  <div class="top"><div class="brand">동문증</div><div class="pill" onclick="toast('가게에서 이 화면을 보여주면 혜택이 적용됩니다')">사용 안내</div></div>
+  <div class="idcard"><div class="sc">숭실고등학교 총동문회</div><h3>동문증</h3><div class="nm"><b id="cardName"></b><span id="cardMeta"></span></div><div class="qr" id="qr"></div><div class="exp" id="cardExp"></div></div>
   <div class="stat"><div><b id="myUses">0</b><span>내 혜택 사용</span></div><div><b id="mySaved">0원</b><span>절감 추정</span></div><div><b id="totalMembers">-</b><span>인증 동문</span></div></div>
   <div class="sec" style="padding:14px 20px 0">최근 사용 내역</div>
   <div class="list" id="useLog"></div>
@@ -976,7 +1041,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
       · <b>거주지는 동 단위까지만</b> 저장됩니다 (상세 주소 저장 안 함)<br>
       · <b>연락처는 본인과 운영자만</b> 볼 수 있습니다<br>
       · 첫 메시지에 <b>내 연락처는 보이지 않습니다</b><br>
-      · <b>제휴 가맹점은 동문 명단을 볼 수 없습니다</b><br>
+      · <b>할인 가게은 동문 명단을 볼 수 없습니다</b><br>
       · 하루 메시지 5건 제한 · 영업성 문구 자동 경고<br>
       · 언제든 <b>차단·신고</b> 가능, 신고 3회 시 자동 발송 정지
     </div>
@@ -988,14 +1053,15 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
   <button class="btn" onclick="saveMe()">저장</button>
   <div class="h1" style="padding-top:26px">내 사업장 · 추천 가게 등록</div>
   <div class="sub">등록은 선택입니다. 등록하지 않으면 지도에 표시되지 않습니다.<br>운영자 승인 후 지도에 나타납니다.</div>
-  <button class="btn ghost" onclick="openPlaceForm('alumni_biz')">내 사업장 등록</button>
-  <button class="btn ghost" onclick="openPlaceForm('partner')">제휴 가게 추천 (동문 아님)</button>
+  <button class="btn ghost" onclick="openPlaceForm('alumni_biz')">내 가게 등록</button>
+  <button class="btn ghost" onclick="openPlaceForm('partner')">할인 가게 알려주기</button>
   <button class="btn" style="background:linear-gradient(135deg,#C0392B,#E74C3C);color:#fff" onclick="history=['dues'];go('dues',false)">★ 회비 납부 · 기부 신청</button>
-  <button class="btn ghost" onclick="openPlaceForm('recommend')">추천 장소 등록</button>
+  <button class="btn ghost" onclick="openPlaceForm('recommend')">좋은 곳 알려주기</button>
   <div id="myPlaces" class="list"></div>
   <div id="adminBox"></div>
 
   <div class="h1" style="padding-top:26px;font-size:17px">계정 관리</div>
+  <button class="btn ghost" onclick="showWelcome()">❓ 사용법 다시 보기</button>
   <button class="btn ghost" onclick="openPrivacyPolicy()">📄 개인정보처리방침</button>
   <button class="btn ghost" onclick="downloadMyData()">📥 내 정보 내려받기</button>
   <button class="btn ghost" style="color:var(--red);border-color:#F1948A" onclick="deleteAccount()">회원 탈퇴 · 내 정보 전부 삭제</button>
@@ -1004,6 +1070,19 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 </section>
 
 <!-- PLACE FORM -->
+<section class="screen full" id="sc-welcome">
+  <div style="flex:1;display:flex;flex-direction:column;padding:40px 24px 24px">
+    <div id="welcomeBody" style="flex:1"></div>
+    <div style="display:flex;gap:6px;justify-content:center;margin:20px 0">
+      <i class="wdot" style="width:9px;height:9px;border-radius:50%;background:var(--green)"></i>
+      <i class="wdot" style="width:9px;height:9px;border-radius:50%;background:#D6D4CC"></i>
+      <i class="wdot" style="width:9px;height:9px;border-radius:50%;background:#D6D4CC"></i>
+    </div>
+    <button class="btn" id="welcomeNext" style="margin:0;width:100%" onclick="welcomeNext()">다음</button>
+    <button class="btn ghost" style="margin:8px 0 0;width:100%" onclick="finishWelcome()">나중에 볼게요</button>
+  </div>
+</section>
+
 <section class="screen" id="sc-privacy">
   <div class="top" style="padding-top:26px"><div class="back" onclick="back()">‹ 개인정보처리방침</div></div>
   <div style="padding:0 20px 30px;font-size:13px;line-height:1.8;color:#333">
@@ -1030,7 +1109,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
     <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">2. 수집·이용 목적</h3>
     · 숭실고등학교 졸업생 확인 및 회원 관리<br>
     · 동문 간 위치 기반 검색 및 연결<br>
-    · 동문 사업장·제휴 가맹점 정보 제공<br>
+    · 동문 가게·할인 가게 정보 제공<br>
     · 동문회 회비 및 기부 관리<br>
     · 게시판 운영 및 공지 전달<br>
     · 부정 이용 방지 및 신고 처리
@@ -1042,7 +1121,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
     <h3 style="font-size:15px;font-weight:700;margin:20px 0 8px">4. 제3자 제공</h3>
     <div style="background:#FFF4D6;border:1px solid #F0D48A;border-radius:10px;padding:12px;font-size:12px;color:#6A4C05">
       <b>동문의 개인정보를 외부에 제공하지 않습니다.</b><br><br>
-      · 제휴 가맹점은 동문 명단·연락처를 조회할 수 없습니다<br>
+      · 할인 가게은 동문 명단·연락처를 조회할 수 없습니다<br>
       · 가맹점에는 혜택 이용 건수만 집계로 제공됩니다<br>
       · 어떤 경우에도 명단을 판매하거나 대여하지 않습니다<br>
       · 법령에 따른 수사기관 요청이 있을 때만 예외입니다
@@ -1117,7 +1196,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 </section>
 
 <section class="screen" id="sc-placeform">
-  <div class="top"><div class="back" onclick="back()">‹ 장소 등록</div></div>
+  <div class="top"><div class="back" onclick="back()">‹ 가게·장소 등록</div></div>
   <div class="h1" id="pfTitle"></div>
   <div class="sub" id="pfSub"></div>
   <div class="field"><label>상호 / 장소명 *</label><input id="pfName"></div>
@@ -1135,7 +1214,7 @@ body{background:#DCDAD2;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun
 </section>
 
 <div class="tab" id="tab" style="display:none"></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" onclick="this.classList.remove('on')"></div>
 <div class="modal" id="navModal" onclick="if(event.target===this)this.classList.remove('on')"><div class="box"><h3 id="navTitle">길 안내</h3><p id="navSub"></p><button class="btn k" id="navKakao">카카오맵으로 안내</button><button class="btn n" id="navNaver">네이버지도로 안내</button><button class="btn ghost" onclick="$('#navModal').classList.remove('on')">닫기</button></div></div>
 </div>
 
@@ -1168,12 +1247,13 @@ let homeFilter='all', searchFilter='all', radius=3000;
 let here={...FALLBACK,real:false};
 const privacy={vis_company:'all',vis_home:'near',allow_contact:false};
 const TYPE={alumni_biz:'a',partner:'p',recommend:'r',donor:'d'};
-const TYPE_KO={alumni_biz:'동문 사업장',partner:'제휴 가맹점',recommend:'추천 장소',donor:'기부 기업'};
+const TYPE_KO={alumni_biz:'동문 가게',partner:'할인 가게',recommend:'추천 장소',donor:'기부 기업'};
 
 // ================= HELPERS =================
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3000)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'), bigMode?6000:3000)}
+let bigMode=false;
 let history=['home'];
 function go(id,push=true){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('#sc-'+id).classList.add('on');$('#sc-'+id).scrollTop=0;if(push)history.push(id);renderTab(id);if(id==='home')setTimeout(()=>MAP.relayout(),50);if(id==='me')setTimeout(()=>MINI.init('me'),80);if(id==='placeform')setTimeout(()=>MINI.init('pf'),80)}
 function back(){history.pop();go(history[history.length-1]||'home',false)}
@@ -1216,8 +1296,9 @@ async function boot(){
  $('#tab').style.display='flex';
  privacy.vis_company=me.vis_company;privacy.vis_home=me.vis_home;privacy.allow_contact=me.allow_contact;
  await Promise.all([loadData(),loadMessages(),loadUses(),loadMyPlaces(),loadBoard(),loadDonors()]);
- history=['home'];go('home',false);
- if(!MAP.impl){await MAP.start();MAP.me(here);locate(false)}else renderHome();
+ if(shouldShowWelcome()){ $('#tab').style.display='none'; showWelcome(); if(!MAP.impl){MAP.start().then(()=>{MAP.me(here);locate(false)})} }
+ else { history=['home'];go('home',false);
+  if(!MAP.impl){await MAP.start();MAP.me(here);locate(false)}else renderHome(); }
  renderMe();renderCard();
 }
 async function saveOnboard(){
@@ -1323,10 +1404,15 @@ function fitAll(){MAP.fit([...places,...people,here])}
 
 // ================= TAB =================
 const tabs=[['home','지도'],['search','검색'],['board','게시판'],['dues','회비·기부'],['me','내 정보']];
-function renderTab(active){const root={profile:'search',place:'home',placeform:'me',privacy:'me',admin:'me',newpost:'board',postview:'board'}[active]||active;$('#tab').innerHTML=tabs.map(([id,l])=>`<div class="${root===id?'on':''}" onclick="history=['${id}'];go('${id}',false)"><i></i>${l}</div>`).join('')}
+function renderTab(active){
+  const root={profile:'search',place:'home',placeform:'me',privacy:'me',admin:'me',newpost:'board',postview:'board'}[active]||active;
+  // 큰글씨 모드는 핵심 3개만
+  const list = bigMode ? [['home','지도'],['search','찾기'],['me','내 정보']] : tabs;
+  $('#tab').innerHTML=list.map(([id,l])=>`<div class="${root===id?'on':''}" role="button" tabindex="0" aria-label="${l} 화면으로 이동" aria-current="${root===id?'page':'false'}" onclick="history=['${id}'];go('${id}',false)"><i></i>${l}</div>`).join('');
+}
 
 // ================= HOME =================
-const filters=[['all','전체'],['a','동문 사업장'],['d','✦기부기업'],['p','제휴 혜택'],['w','동문 직장'],['r','추천 장소']];
+const filters=[['all','전체'],['a','동문 가게'],['d','✦기부기업'],['p','할인 가게'],['w','동문 직장'],['r','추천 장소']];
 const radii=[[1000,'1km'],[3000,'3km'],[10000,'10km'],[0,'전체']];
 function renderHome(){
  $('#homeChips').innerHTML=filters.map(([k,l])=>`<span class="chip ${homeFilter===k?'on':''}" onclick="homeFilter='${k}';renderHome()">${l}</span>`).join('');
@@ -1339,9 +1425,22 @@ function renderHome(){
  ws.forEach(w=>MAP.add(w.lat,w.lng,pinHTML(w.isMe?'me-pin w':'w',`${w.name}${w.isMe?'':' · '+gradShort(w)}`,w.isMe?'나':'직'),()=>{w.isMe?(history=['me'],go('me',false)):openProfile(w.id)}));
  MAP.me(here);
  const psR=ps.filter(inR).sort((a,b)=>dist(a)-dist(b)),wsR=ws.filter(inR).sort((a,b)=>dist(a)-dist(b));
- $('#homeSummary').textContent=`${here.real?'내 위치':'여의도'} 기준 ${radius?fm(radius):'전체'} · 동문 ${wsR.length}명 · 장소 ${psR.length}곳`;
+ if(bigMode){
+   $('#homeSummary').innerHTML = `<div style="font-size:19px;font-weight:700;padding:4px 0 2px">내 주변 동문 ${wsR.length}명 · 가게 ${psR.length}곳</div>`;
+ } else {
+   $('#homeSummary').textContent=`${here.real?'내 위치':'여의도'} 기준 ${radius?fm(radius):'전체'} · 동문 ${wsR.length}명 · 장소 ${psR.length}곳`;
+ }
  const items=psR.map(placeCard).concat(wsR.map(personCard));
- $('#homeList').innerHTML=items.join('')||`<div class="empty">${isVerified()?'이 범위에 등록된 동문·장소가 아직 없습니다.<br>반경을 넓히거나, 내 정보에서 직장·사업장을 먼저 등록해 보세요.':'인증이 완료되면 여기에 주변 동문이 표시됩니다.'}</div>`;
+ const myOnMap = me && me.company_lat!=null && me.vis_company!=='none';
+ $('#homeList').innerHTML = items.join('') || `
+   <div style="padding:24px 4px;text-align:center">
+     <div style="font-size:${bigMode?'22px':'17px'};font-weight:700;margin-bottom:8px">아직 등록된 동문이 없습니다</div>
+     <div style="font-size:${bigMode?'17px':'14px'};color:var(--mute);line-height:1.8;margin-bottom:20px">
+       ${myOnMap ? '다른 동문이 직장을 등록하면<br>여기에 나타납니다.' : '내 직장을 먼저 등록하면<br>다른 동문이 나를 찾을 수 있습니다.'}
+     </div>
+     ${!myOnMap?`<button class="btn" style="margin:0 auto;width:100%" onclick="history=['me'];go('me',false)">내 직장 등록하기</button>`:''}
+     <button class="btn ghost" style="margin:10px auto 0;width:100%" onclick="shareKakao()">💬 동문 초대하기</button>
+   </div>`;
 }
 function placeCard(p){
   const isDonorCard=p.t==='d';
@@ -1358,10 +1457,10 @@ function placeCard(p){
   </div>`;
 }
 
-function personCard(w){return `<div class="card" onclick="${w.isMe?'history=[\'me\'];go(\'me\',false)':`openProfile('${w.id}')`}" style="${w.isMe?'background:#E3EFE8;border-radius:10px;padding:10px 12px;margin:4px 0':''}"><div class="av ${w.isMe?'':(w.can_message?'':'x')}">${initial(w.name)}</div><div><h4>${esc(w.name)}<span class="tag g">${gradShort(w)}</span></h4><p>${esc(w.company||'')}${w.job?' · '+esc(w.job):''} · ${w.can_message?'연락 허용':'연락 비공개'}</p></div><div class="dist" style="${w.isMe?'color:var(--green);font-weight:600':(w.can_message?'color:var(--green);font-weight:600':'')}">${w.lat!=null?fm(dist(w)):''}${w.isMe?'<br>내 직장':(w.can_message?'<br>메시지':'')}</div></div>`}
+function personCard(w){return `<div class="card" onclick="${w.isMe?'history=[\'me\'];go(\'me\',false)':`openProfile('${w.id}')`}" style="${w.isMe?'background:#E3EFE8;border-radius:10px;padding:10px 12px;margin:4px 0':''}"><div class="av ${w.isMe?'':(w.can_message?'':'x')}">${initial(w.name)}</div><div><h4>${esc(w.name)}<span class="tag g">${gradShort(w)}</span></h4><p>${esc(w.company||'')}${w.job?' · '+esc(w.job):''} · ${w.can_message?'메시지 받기':'연락 비공개'}</p></div><div class="dist" style="${w.isMe?'color:var(--green);font-weight:600':(w.can_message?'color:var(--green);font-weight:600':'')}">${w.lat!=null?fm(dist(w)):''}${w.isMe?'<br>내 직장':(w.can_message?'<br>메시지':'')}</div></div>`}
 
 // ================= SEARCH =================
-const sFilters=[['all','전체'],['w','동문'],['a','동문 사업장'],['d','✦기부기업'],['p','제휴 혜택'],['r','추천 장소']];
+const sFilters=[['all','전체'],['w','동문'],['a','동문 가게'],['d','✦기부기업'],['p','할인 가게'],['r','추천 장소']];
 function renderSearch(){
  $('#searchChips').innerHTML=sFilters.map(([k,l])=>`<span class="chip ${searchFilter===k?'on':''}" onclick="searchFilter='${k}';renderSearch()">${l}</span>`).join('');
  const q=$('#q').value.trim().toLowerCase();const hit=s=>!q||String(s??'').toLowerCase().includes(q);let out='';
@@ -1376,7 +1475,7 @@ function openProfile(id){
  $('#sc-profile').innerHTML=`
  <div class="top"><div class="back" onclick="back()">‹ 동문 프로필</div><div class="pill" onclick="reportUser('${a.id}')">신고</div></div>
  <div class="hero"><div class="row"><div class="av ${a.can_message?'':'x'}">${initial(a.name)}</div><div><h2>${esc(a.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${gradLabel(a)}</span></h2><div class="meta">${esc(a.company||'직장 비공개')}${a.job?' · '+esc(a.job):''}<br>${esc(a.company_addr||'')}${a.lat!=null?' · '+fm(dist(a)):''}</div></div></div>
- <div class="st ${a.can_message?'ok':'no'}"><i></i>${a.can_message?'연락 허용':'연락 비공개'}</div></div>
+ <div class="st ${a.can_message?'ok':'no'}"><i></i>${a.can_message?'메시지 받기':'연락 비공개'}</div></div>
  <div class="info"><div><span>거주지</span><span>${esc(a.home_dong||'비공개')}</span></div><div><span>추천 장소</span><span>${esc(a.recommend_note||'—')}</span></div><div><span>동문회 활동</span><span>${esc(a.role_note||'—')}</span></div></div>
  ${a.lat!=null?`<button class="btn ghost" onclick="openNav('${esc(a.company||a.name)}',${a.lat},${a.lng})">직장 위치로 길 안내</button>`:''}
  ${a.can_message?`<div class="compose"><label>첫 메시지 · 하루 5건</label><textarea id="msgText">안녕하세요, ${me.grad_year||classToYear(me.class_no)}년 졸업 ${esc(me.name)}입니다. 언제 시간 되시면 인사드리러 찾아뵙겠습니다.</textarea><div class="from">발신자 정보 자동 첨부 · ${esc(me.name)} · ${gradLabel(me)}${me.job?' · '+esc(me.job):''}</div></div>
@@ -1444,7 +1543,7 @@ function openPlace(id){
    </div>`;
  })()}
  ${isDonor?'<div class="note" style="background:#FFF5F5;border-color:#F1948A;color:#922B21"><b>★ 기부 기업</b> · 이 기업/가게는 숭실고 총동문회에 기부를 약정했습니다. 이용 시 응원해 주세요.</div>':partner?'<div class="note">이 가게는 숭실 동문이 운영하지 않습니다. 동문회와 제휴해 혜택을 제공하는 일반 가게입니다. 가게는 동문 명단·연락처를 볼 수 없습니다.</div>':''}
- ${p.type!=='recommend'&&p.approved?`<div class="two"><button class="btn ghost" onclick="useBenefit('${p.id}')">혜택 받았어요</button><button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button></div>`:`<button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button>`}
+ ${p.type!=='recommend'&&p.approved?`<div class="two"><button class="btn ghost" onclick="useBenefit('${p.id}')">할인 받았어요</button><button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button></div>`:`<button class="btn amber" onclick="openNav('${esc(p.name)}',${p.lat},${p.lng})">길 안내</button>`}
  <button class="btn ghost" onclick="history=['home'];go('home',false);MAP.setCenter({lat:${p.lat},lng:${p.lng}},${MAP.provider==='kakao'?3:16})">지도에서 보기</button>
  ${partner?`<button class="btn ghost" style="color:var(--red)" onclick="reportPlace('${p.id}')">혜택을 안 지켰어요</button>`:''}
  <div style="height:24px"></div>`;
@@ -1476,15 +1575,15 @@ async function renderCard(){
 // ================= ME =================
 function renderMe(){
  const onMap = me.company_lat!=null && me.vis_company!=='none';
- const visKo = {all:'전체 공개',near:'±5년 기수만',none:'비공개'};
+ const visKo = {all:'모두에게 공개',near:'비슷한 또래만',none:'안 보임'};
  $('#meStatus').innerHTML=`
    <div style="margin:0 20px 10px;background:${onMap?'#E3EFE8':'#FFF4D6'};border:1px solid ${onMap?'var(--green)':'#F0D48A'};border-radius:14px;padding:12px 14px">
      <div style="font-size:13px;font-weight:700;color:${onMap?'var(--green)':'#8A6205'};margin-bottom:6px">
        ${onMap?'✓ 지도에 표시되고 있습니다':'⚠️ 지도에 표시되지 않습니다'}
      </div>
      <div style="font-size:11px;line-height:1.7;color:${onMap?'#2E6B50':'#6A4C05'}">
-       직장 위치: <b>${me.company_lat!=null?'등록됨':'미등록'}</b> · 직장 공개: <b>${visKo[me.vis_company]||'비공개'}</b><br>
-       ${!onMap?(me.company_lat==null?'→ 아래 지도를 눌러 직장 위치를 찍어주세요':'→ 아래 「직장 공개」를 <b>전체</b>로 바꿔주세요'):'다른 동문이 내 주변 검색 시 나타납니다'}
+       직장 위치: <b>${me.company_lat!=null?'등록됨':'미등록'}</b> · 직장을 누구에게: <b>${visKo[me.vis_company]||'비공개'}</b><br>
+       ${!onMap?(me.company_lat==null?'→ 아래 지도를 눌러 직장 위치를 찍어주세요':'→ 아래 「직장을 누구에게」를 <b>전체</b>로 바꿔주세요'):'다른 동문이 내 주변 검색 시 나타납니다'}
      </div>
      <button onclick="previewMyProfile()" style="margin-top:10px;width:100%;border:1px solid ${onMap?'var(--green)':'#F0D48A'};background:#fff;color:${onMap?'var(--green)':'#8A6205'};border-radius:9px;padding:9px;font:inherit;font-size:12px;font-weight:600;cursor:pointer">👁 다른 동문에게 보이는 내 모습 확인</button>
    </div>
@@ -1494,8 +1593,8 @@ function renderMe(){
  renderPrivacy();renderAdmin();
 }
 function renderPrivacy(){
- const seg=(k,label,sub)=>`<div><span>${label}${sub?`<small>${sub}</small>`:''}</span><div class="seg">${[['all','전체'],['near','±5년'],['none','비공개']].map(([v,l])=>`<span class="${privacy[k]===v?'on':''}" onclick="privacy.${k}='${v}';renderPrivacy()">${l}</span>`).join('')}</div></div>`;
- $('#privacy').innerHTML=seg('vis_company','직장 공개','지도에 직장 위치 표시')+seg('vis_home','거주지 공개','동 단위까지만')+`<div><span>연락 허용<small>기본은 꺼짐 · 켜면 첫 메시지를 받습니다</small></span><div class="sw ${privacy.allow_contact?'on':''}" onclick="privacy.allow_contact=!privacy.allow_contact;renderPrivacy()"></div></div>`;
+ const seg=(k,label,sub)=>`<div><span>${label}${sub?`<small>${sub}</small>`:''}</span><div class="seg">${[['all','모두'],['near','±5년'],['none','안 보임']].map(([v,l])=>`<span class="${privacy[k]===v?'on':''}" onclick="privacy.${k}='${v}';renderPrivacy()">${l}</span>`).join('')}</div></div>`;
+ $('#privacy').innerHTML=seg('vis_company','직장을 누구에게','지도에 직장 위치 표시')+seg('vis_home','사는 곳을 누구에게','동 단위까지만')+`<div><span>메시지 받기<small>기본은 꺼짐 · 켜면 첫 메시지를 받습니다</small></span><div class="sw ${privacy.allow_contact?'on':''}" onclick="privacy.allow_contact=!privacy.allow_contact;renderPrivacy()"></div></div>`;
 }
 async function saveMe(){
  const yr=parseInt($('#meYear').value);if(!$('#meName').value.trim())return toast('이름을 입력해 주세요');if(!yr||yr<1950||yr>2100)return toast('졸업연도를 정확히 입력해 주세요 (예: 1992)');const cls=yearToClass(yr);
@@ -1505,7 +1604,7 @@ async function saveMe(){
  me={...me,...row};
  // 저장 후 안내
  if(pt.lat && privacy.vis_company==='none'){
-   toast('저장했습니다. 단, 직장 공개가 "비공개"라 다른 동문에게는 보이지 않습니다. 공개하려면 직장 공개를 "전체"로 바꿔주세요.');
+   toast('저장했습니다. 단, 직장을 누구에게가 "비공개"라 다른 동문에게는 보이지 않습니다. 공개하려면 직장을 누구에게를 "전체"로 바꿔주세요.');
  } else if(pt.lat){
    toast('저장했습니다. 지도에 표시됩니다.');
  } else {
@@ -1515,7 +1614,7 @@ async function saveMe(){
 }
 let pfType='alumni_biz';
 function openPlaceForm(type){pfType=type;MINI.reset('pf');['pfName','pfCat','pfAddr','pfBenefitText','pfRate','pfHours','pfBiz'].forEach(i=>$('#'+i).value='');
- $('#pfTitle').textContent={alumni_biz:'내 사업장 등록',partner:'제휴 가게 추천',recommend:'추천 장소 등록',donor:'✦ 기부 기업·소상공인 신청'}[type]||'장소 등록';
+ $('#pfTitle').textContent={alumni_biz:'내 가게 등록',partner:'제휴 가게 추천',recommend:'좋은 곳 알려주기',donor:'✦ 기부 기업·소상공인 신청'}[type]||'가게·장소 등록';
  $('#pfSub').textContent={alumni_biz:'내가 운영하는 가게·사무소입니다. 동문 혜택을 함께 적으면 상단에 노출됩니다.',partner:'동문이 아닌 가게가 "앱 제시 시 할인"에 동의했을 때 등록합니다. 운영자가 가게에 확인 후 승인합니다.',recommend:'숭실 말하면 통하는 곳, 동문 단골집 등을 공유합니다.',donor:'기업·소상공인이 동문회에 기부를 약정하면 지도에 ✦로 강조 표시됩니다. 기부 내용과 금액을 적어주세요.'}[type]||'';
  $('#pfBenefit').style.display=type==='recommend'?'none':'block';
   $('#pfBenefitText').placeholder=type==='donor'?'기부 내용 및 금액 (예: 연 100만원 발전기금 약정)':'예: 앱 제시 시 15% 할인';
@@ -1614,7 +1713,7 @@ function previewMyProfile(){
   const near = (v)=>v==='all'||v==='near';
   const showCompany = me.vis_company!=='none';
   const showHome = me.vis_home!=='none';
-  const visKo={all:'모든 동문',near:'±5년 기수만',none:'아무에게도'};
+  const visKo={all:'모든 동문',near:'비슷한 또래만',none:'아무에게도 안 보임'};
 
   $('#sc-profile').innerHTML=`
   <div class="top"><div class="back" onclick="back()">‹ 미리보기</div>
@@ -1629,7 +1728,7 @@ function previewMyProfile(){
     <div><h2>${esc(me.name)} <span style="font-size:14px;color:var(--mute);font-weight:500">${gradLabel(me)}</span></h2>
     <div class="meta">${showCompany?(esc(me.company||'직장 미등록')+(me.job?' · '+esc(me.job):'')):'<span style="color:#C0392B">직장 비공개</span>'}<br>
     ${showCompany?esc(me.company_addr||''):''}</div></div></div>
-    <div class="st ${me.allow_contact?'ok':'no'}"><i></i>${me.allow_contact?'연락 허용':'연락 비공개'}</div></div>
+    <div class="st ${me.allow_contact?'ok':'no'}"><i></i>${me.allow_contact?'메시지 받기':'연락 비공개'}</div></div>
 
   <div class="info">
     <div><span>거주지</span><span>${showHome?esc(me.home_dong||'미등록'):'<span style="color:#C0392B">비공개</span>'}</span></div>
@@ -1638,7 +1737,7 @@ function previewMyProfile(){
   </div>
 
   <div style="margin:14px 20px 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px">
-    <div style="font-size:13px;font-weight:700;margin-bottom:10px">현재 공개 범위</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px">누구에게 보일까요</div>
     <div style="font-size:12px;line-height:2;color:#333">
       <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">이름 · 졸업연도</span><b>모든 동문</b></div>
       <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">직장 · 위치</span><b style="color:${showCompany?'var(--green)':'#C0392B'}">${visKo[me.vis_company]}</b></div>
@@ -1649,12 +1748,87 @@ function previewMyProfile(){
   </div>
 
   <div class="note">지도에서는 ${me.company_lat!=null&&showCompany?'<b style="color:var(--green)">직장 위치에 파란 핀</b>으로 표시됩니다':'<b style="color:#C0392B">표시되지 않습니다</b>'}.</div>
-  <button class="btn ghost" onclick="history=['me'];go('me',false)">공개 설정 바꾸러 가기</button>
+  <button class="btn ghost" onclick="history=['me'];go('me',false)">보이는 범위 바꾸기</button>
   <div style="height:24px"></div>`;
   go('profile');
 }
 
 function openPrivacyPolicy(){ go('privacy'); }
+
+// ================= 첫 사용 안내 =================
+let welcomeStep = 0;
+const WELCOME = [
+  {icon:'📍', title:'내 직장을 등록하세요',
+   body:'직장이나 가게 위치를 지도에 표시하면<br>다른 동문이 나를 찾을 수 있습니다.<br><br>등록하지 않으면 아무에게도 보이지 않습니다.',
+   action:'등록은 「내 정보」에서 합니다'},
+  {icon:'🗺️', title:'내 주변 동문을 찾으세요',
+   body:'지도를 열면 근처에 있는 동문과<br>동문이 운영하는 가게가 표시됩니다.<br><br>동문 가게에서는 할인도 받을 수 있습니다.',
+   action:'파란 핀 = 동문 직장, 초록 핀 = 동문 가게'},
+  {icon:'💬', title:'동문을 초대하세요',
+   body:'많은 동문이 참여할수록<br>지도가 풍성해집니다.<br><br>오른쪽 위 「초대」 버튼을 누르면<br>카톡으로 바로 보낼 수 있습니다.',
+   action:'함께하면 더 좋습니다'}
+];
+
+function showWelcome(){
+  welcomeStep = 0;
+  renderWelcome();
+  go('welcome');
+}
+
+function renderWelcome(){
+  const w = WELCOME[welcomeStep];
+  const big = bigMode;
+  $('#welcomeBody').innerHTML = `
+    <div style="text-align:center;padding-top:${big?'30px':'50px'}">
+      <div style="font-size:${big?'72px':'60px'};margin-bottom:24px">${w.icon}</div>
+      <div style="font-size:${big?'27px':'23px'};font-weight:700;margin-bottom:18px;line-height:1.4">${w.title}</div>
+      <div style="font-size:${big?'19px':'16px'};color:#444;line-height:1.9">${w.body}</div>
+      <div style="margin-top:26px;background:#E3EFE8;border-radius:12px;padding:${big?'16px':'13px'};font-size:${big?'16px':'13px'};color:var(--green);font-weight:600">${w.action}</div>
+    </div>`;
+  document.querySelectorAll('.wdot').forEach((d,i)=>{ d.style.background = i===welcomeStep?'var(--green)':'#D6D4CC'; });
+  $('#welcomeNext').textContent = welcomeStep===WELCOME.length-1 ? '시작하기' : '다음';
+}
+
+function welcomeNext(){
+  if(welcomeStep < WELCOME.length-1){ welcomeStep++; renderWelcome(); }
+  else finishWelcome();
+}
+
+function finishWelcome(){
+  try{ localStorage.setItem('sshs_welcomed','1'); }catch(e){}
+  $('#tab').style.display='flex';
+  history=['home']; go('home',false);
+}
+
+function shouldShowWelcome(){
+  try{ return localStorage.getItem('sshs_welcomed')!=='1'; }catch(e){ return false; }
+}
+
+
+
+// ================= 큰글씨(쉬운) 모드 =================
+function loadBigMode(){
+  try{ bigMode = localStorage.getItem('sshs_big')==='1'; }catch(e){ bigMode=false; }
+  applyBigMode(false);
+}
+function toggleBigMode(){
+  bigMode = !bigMode;
+  try{ localStorage.setItem('sshs_big', bigMode?'1':'0'); }catch(e){}
+  applyBigMode(true);
+}
+function applyBigMode(notify){
+  document.body.classList.toggle('big', bigMode);
+  // 큰글씨 모드: 필터/반경 단순화
+  if(bigMode){ homeFilter='all'; radius=0; }
+  const t=$('#bigToggle'); if(t) t.textContent = bigMode?'작게':'큰글씨';
+  const hb=$('#homeBrand'); if(hb) hb.textContent = bigMode?'동문 찾기':'숭실고 동문 찾기';
+  const cur = [...document.querySelectorAll('.screen')].find(s=>s.classList.contains('on'))?.id?.replace('sc-','')||'home';
+  renderTab(cur);
+  setTimeout(()=>{ MAP.relayout(); renderHome(); }, 120);
+  if(notify) toast(bigMode?'큰글씨 모드로 바꿨습니다':'보통 글씨로 바꿨습니다');
+}
+
+
 
 // ================= 개인정보 · 계정 관리 =================
 async function downloadMyData(){
@@ -1699,7 +1873,7 @@ async function deleteAccount(){
 // ================= SHARE =================
 function shareKakao(){
   const url = location.origin + location.pathname;
-  const text = `[숭실고 동문 찾기]\n내 주변 숭실 동문을 찾고, 동문 사업장 할인도 받으세요!\n\n👉 ${url}\n\n카카오 계정으로 바로 가입 가능합니다.`;
+  const text = `[숭실고 동문 찾기]\n내 주변 숭실 동문을 찾고, 동문 가게 할인도 받으세요!\n\n👉 ${url}\n\n카카오 계정으로 바로 가입 가능합니다.`;
   if(navigator.share){
     navigator.share({title:'숭실고 동문 찾기', text, url}).catch(()=>{});
   } else if(window.Kakao?.isInitialized?.()) {
@@ -1799,13 +1973,13 @@ async function loadAdminApprove(){
     </div>
     ${members.length?`<div class="sec" style="padding:0 20px">가입 승인 대기 (${members.length})</div>`:''}
     ${memberCards}
-    ${places.length?`<div class="sec" style="padding:12px 20px 4px">장소 등록 승인 대기 (${places.length})</div>`:''}
+    ${places.length?`<div class="sec" style="padding:12px 20px 4px">가게·장소 등록 승인 대기 (${places.length})</div>`:''}
     ${placeCards}
     <div style="height:24px"></div>`
     : `<div style="padding:40px 20px;text-align:center">
         <div style="font-size:40px;margin-bottom:12px">✓</div>
         <div style="font-size:15px;font-weight:600;color:var(--green);margin-bottom:6px">처리할 항목이 없습니다</div>
-        <div style="font-size:12px;color:var(--mute);line-height:1.7">새로운 가입 신청이나 장소 등록이 들어오면<br>여기에 표시됩니다.</div>
+        <div style="font-size:12px;color:var(--mute);line-height:1.7">새로운 가입 신청이나 가게·장소 등록이 들어오면<br>여기에 표시됩니다.</div>
       </div>`;
 }
 
@@ -1888,7 +2062,7 @@ async function loadAdminStats(){
       </div>
       <div style="display:flex;gap:8px;margin-bottom:16px">
         ${card('★ '+donors.length+'개사','기부 기업','#C0392B','#FFF8E1')}
-        ${card(places.filter(p=>p.type==='alumni_biz').length+'곳','동문 사업장')}
+        ${card(places.filter(p=>p.type==='alumni_biz').length+'곳','동문 가게')}
       </div>
 
       <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px">
@@ -1899,7 +2073,7 @@ async function loadAdminStats(){
       <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px">
         <div style="font-size:13px;font-weight:700;margin-bottom:10px">활동 지표</div>
         <div style="font-size:12px;line-height:2;color:#333">
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">연락 허용 동문</span><b>${members.filter(m=>m.allow_contact).length}명</b></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">메시지 받기 동문</span><b>${members.filter(m=>m.allow_contact).length}명</b></div>
           <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">직장 등록 동문</span><b>${members.filter(m=>m.company).length}명</b></div>
           <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">소식 수신 동의</span><b>${members.filter(m=>m.marketing_consent).length}명</b></div>
           <div style="display:flex;justify-content:space-between"><span style="color:var(--mute)">게시글</span><b>${(bp.data||[]).length}건</b></div>
@@ -1981,7 +2155,7 @@ function renderMemberRows(list){
             ${esc(m.company||m.job||'직장 미등록')}${m.phone?' · '+esc(m.phone):''}
           </div>
           <div style="font-size:10px;color:var(--mute);margin-top:2px">
-            가입 ${new Date(m.created_at).toLocaleDateString('ko-KR')}${m.allow_contact?' · 연락 허용':''}
+            가입 ${new Date(m.created_at).toLocaleDateString('ko-KR')}${m.allow_contact?' · 메시지 받기':''}
           </div>
         </div>
       </div>
